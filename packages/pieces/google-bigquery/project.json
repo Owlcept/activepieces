@@ -1,0 +1,42 @@
+{
+  "name": "pieces-google-bigquery",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/pieces/google-bigquery/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/pieces/google-bigquery",
+        "tsConfig": "packages/pieces/google-bigquery/tsconfig.lib.json",
+        "packageJson": "packages/pieces/google-bigquery/package.json",
+        "main": "packages/pieces/google-bigquery/src/index.ts",
+        "assets": [
+          "packages/pieces/google-bigquery/*.md"
+        ],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs pieces-google-bigquery {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/pieces/google-bigquery/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
